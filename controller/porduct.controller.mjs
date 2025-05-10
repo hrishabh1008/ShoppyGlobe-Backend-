@@ -44,19 +44,20 @@ export async function fetchAllProducts(_,res) {
     }
 
 }
-export async function fetchProductById(req,res) {
-
-    // console.log(res)
-    try {
-        const result = await porductsModel.find();
-        if (!result) {
-            return res.status(404).send({message: "No Product Found"})
-        }
-        return res.status(200).send({message:"Products found Successfully: ",result})
-        
-    } catch (error) {
-        console.log(error)
-        res.status(500).json({message: "Error fetching all Products",error: error.message})
+export async function fetchProductById(req, res) {
+  // console.log(res)
+  try {
+    const result = await porductsModel.find({ _id: req.params.id });
+    if (!result) {
+      return res.status(404).send({ message: "No Product Found" });
     }
-
+    return res
+      .status(200)
+      .send({ message: "Product found Successfully: ", result });
+  } catch (error) {
+    console.log(error);
+    res
+      .status(500)
+      .json({ message: "Error fetching all Products", error: error.message });
+  }
 }
