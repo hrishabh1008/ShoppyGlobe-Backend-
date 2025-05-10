@@ -1,8 +1,7 @@
 import express from "express";
 import mongoose from "mongoose";
-import { appRoutes } from "./routes/appRoutes.mjs";
-
-// console.log(express);
+import { productsRoutes } from "./routes/products.routes.mjs";
+import { userRoutes } from "./routes/user.routes.mjs";
 
 const app = express();
 const port = 4000;
@@ -15,7 +14,8 @@ app.listen(port, () => {
 app.use(express.json()); //inbuilt express middleware to parse json format data
 app.use(express.urlencoded()); //inbuilt express middleware to parse URLEncoded data
 
-appRoutes(app);
+productsRoutes(app);
+userRoutes(app);
 
 //connecting to the MongoDb local database
 mongoose
